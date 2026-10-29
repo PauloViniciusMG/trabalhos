@@ -199,20 +199,20 @@ if __name__ == "__main__":
     n_bandas = 5
 
     # diagonal principal: valores diferentes + termo linear em w
-    A   = [-2.77 * 10**(-2), -2.77 * 10**(-2), -2.77 * 10**(-2), -2.77 * 10**(-2), -2.77 * 10**(-2)]
-    ETA = [0.001, 0.001, 0.001, 0.001, 0.001]
-    d0 = [(lambda kz, w, a=a, eta=eta: a + (1.25*10**(-2)) * np.cos(kz * b) + eta * w)
+    A   = [ 4.155 * 10**(-2), 4.155 * 10**(-2), 4.155 * 10**(-2), 4.155 * 10**(-2), 4.155 * 10**(-2)]
+    ETA = [ 0.001, 0.001, 0.001, 0.001, 0.001]
+    d0 = [(lambda kz, w, a=a, eta=eta: a - (0.625*10**(-2)) * np.cos(kz * b) + eta * w)
           for a, eta in zip(A, ETA)]
 
     # diagonais ±1: superior e inferior DIFERENTES (sem dependência em w)
-    J1_sup = [1.85 * 10**(-2), 1.85 * 10**(-2), 1.85 * 10**(-2), 1.85 * 10**(-2)]
-    J1_inf = [1.85 * 10**(-2), 1.85 * 10**(-2), 1.85 * 10**(-2), 1.85 * 10**(-2)]
+    J1_sup = [ -9.24 * 10**(-3), -9.24 * 10**(-3), -9.24 * 10**(-3), -9.24 * 10**(-3)]
+    J1_inf = [ -9.24 * 10**(-3), -9.24 * 10**(-3), -9.24 * 10**(-3), -9.24 * 10**(-3)]
     d1_sup = [(lambda kz, w, j=j: j) for j in J1_sup]
     d1_inf = [(lambda kz, w, j=j: j) for j in J1_inf]
 
     # diagonais ±2: superior e inferior DIFERENTES
-    J2_sup = [1.06*10**(-2), 1.06*10**(-2), 1.06*10**(-2)]
-    J2_inf = [1.06*10**(-2), 1.06*10**(-2), 1.06*10**(-2)]
+    J2_sup = [-5.31*10**(-3), -5.31*10**(-3), -5.31*10**(-3)]
+    J2_inf = [ -5.31*10**(-3), -5.31*10**(-3), -5.31*10**(-3),]
     d2_sup = [(lambda kz, w, j=j: j) for j in J2_sup]
     d2_inf = [(lambda kz, w, j=j: j) for j in J2_inf]
 
@@ -220,7 +220,7 @@ if __name__ == "__main__":
 
     # kz de 0 a +pi/b  (kz*b/pi de 0 a 1)
     kz, bandas, marcos = varrer_caminho(n_bandas, diag, b=b,
-                                        w_min=-2.0, w_max=12.0, n_pontos=2000,
+                                        w_min=-0.2, w_max=0.2, n_pontos=2000,
                                         kz_min=0.0)
 
     # eixo x em kz*b/pi, ticks a cada 0.25 (mude com passo_tick=...)
